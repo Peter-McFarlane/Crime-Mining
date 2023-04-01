@@ -1,0 +1,391 @@
+{% extends 'home/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <title>Document</title>
+</head>
+<body>
+    {% block body %}
+    <header>
+        SP-2-DATAMINING-AI
+        <div class="nav">
+            <a class="btn nav-link" href="{% url 'home:base' %}">About</a>
+            <a class="btn nav-link" href="{% url 'home:docs' %}">Documents</a>
+            <a class="btn btn-current nav-link">Data</a>
+            <a class="btn nav-link" href="{% url 'home:findings' %}">Findings</a>
+        </div>
+    </header>
+    <div class="bodytext">
+        <h1> Visualize the data </h1>
+        <p>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <div class="btn-container">
+                    <button type="sumbit" class="btn-green">Create graph</button>
+                </div>
+            </form>
+        </p>
+        <h2> {{graphtitle}} </h2>
+
+        {% if characteristic == "all" %}
+            <div> <canvas id="chart"></canvas> </div>
+        {% elif characteristic == "age" %}
+            <div> <canvas id="ageChart"></canvas> </div>
+        {% elif characteristic == "sex" %}
+            <div> <canvas id="sexChart"></canvas> </div>
+        {% elif characteristic == "sexual orientation" %}
+            <div> <canvas id="soChart"></canvas> </div>
+        {% elif characteristic == "gender identity" %}
+            <div> <canvas id="giChart"></canvas> </div>
+        {% elif characteristic == "household income" %}
+            <div> <canvas id="hiChart"></canvas> </div>
+        {% elif characteristic == "urban, suburban, or rural" %}
+            <div> <canvas id="usrChart"></canvas> </div>
+        {% elif characteristic == "reported to police" %}
+            <div> <canvas id="rpChart"></canvas> </div>
+        {% elif characteristic == "did not report to police" %}
+            <div> <canvas id="dnrpChart"></canvas> </div>
+        {% endif %}
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        {% block scripts %}
+
+        <script>
+
+            /* CHARTS */
+
+        // ALL CHARACTERISTICS
+        $(document).ready(function(){
+                const ctx = document.getElementById('chart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: 'Total US population represented in survey',
+                        data: yvals[0],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // AGE
+        $(document).ready(function(){
+                const ctx = document.getElementById('ageChart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: 'Under 18',
+                        data: yvals[0],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '18 to 24',
+                        data: yvals[1],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '25 to 34',
+                        data: yvals[2],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '35 to 49',
+                        data: yvals[3],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '50 to 64',
+                        data: yvals[4],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '65 or older',
+                        data: yvals[5],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // SEX
+        $(document).ready(function(){
+                const ctx = document.getElementById('sexChart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: 'Male',
+                        data: yvals[0],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Female',
+                        data: yvals[1],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // SEXUAL ORIENTATION
+        $(document).ready(function(){
+                const ctx = document.getElementById('soChart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: 'Lesbian or gay',
+                        data: yvals[0],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Straight',
+                        data: yvals[1],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Bisexual',
+                        data: yvals[2],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Something else',
+                        data: yvals[3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+            
+        // GENDER IDENTITY
+        $(document).ready(function(){
+                const ctx = document.getElementById('giChart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: 'Male',
+                        data: yvals[0],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Female',
+                        data: yvals[1],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Transgender',
+                        data: yvals[2],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // HOUSEHOLD INCOME
+        $(document).ready(function(){
+                const ctx = document.getElementById('hiChart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: '< $10,000',
+                        data: yvals[0],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '$10,000 to $20,000',
+                        data: yvals[1],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '$20,000 to $35,000',
+                        data: yvals[2],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '$35,000 to $50,000',
+                        data: yvals[3],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '$50,000 to $75,000',
+                        data: yvals[4],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '> $75,000',
+                        data: yvals[5],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // URBAN, SUBURBAN, OR RURAL
+        $(document).ready(function(){
+                const ctx = document.getElementById('usrChart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: 'Urban',
+                        data: yvals[0],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Suburban',
+                        data: yvals[1],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Rural',
+                        data: yvals[2],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // REPORTED TO POLICE
+        $(document).ready(function(){
+                const ctx = document.getElementById('rpChart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: 'Reported to police',
+                        data: yvals[0],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // THOUGHT CRIME BUT DID NOT REPORT TO POLICE
+        $(document).ready(function(){
+                const ctx = document.getElementById('dnrpChart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: 'Thought crime occured but did not report to police',
+                        data: yvals[0],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+        </script>
+        {% endblock scripts %}
+    </div>
+    {% endblock body %}
+</body>
+</html>

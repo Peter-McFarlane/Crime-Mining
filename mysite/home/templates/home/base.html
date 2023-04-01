@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheet -->
+    <link rel = "stylesheet" type ="text/css" href="{% static 'home/style.css' %}">
+    <!-- Chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>mysite</title>
+</head>
+<body>
+  {% block body %}
+    <header>
+        SP-2-DATAMINING-AI
+        <div class="nav">
+            <a class="btn btn-current nav-link">About</a>
+            <a class="btn nav-link" href="{% url 'home:docs' %}">Documents</a>
+            <a class="btn nav-link" href="{% url 'home:data' %}">Data</a>
+            <a class="btn nav-link" href="{% url 'home:findings' %}">Findings</a>
+        </div>
+    </header>
+    <div class="bodytext">
+        <h1> About this project </h1>
+        <p> 
+            This website serves as a data visualization tool for the 
+            National Crime Victimization Survey. Additionally, it provides
+            more detailed analysis of the data using a number of data mining 
+            methods across multiple variables. 
+        </p>
+        <h1> About the dataset </h1>
+        <p>
+            The National Crime Victimization Survey (NCVS) is a 
+            comprehensive survey of crime victimization in the 
+            United States, and is the Bureau of Justice Statistics'
+            primary source of information on crime victimization, 
+            obtained from a sample of nearly a quarter million individuals 
+            in over 150,000 households nationwide. This concatenated dataset
+            contains data from over five million survey responses spanning from 
+            1992 to 2021. 
+        </p>
+        <p>
+            The NCVS includes victims of property crimes such as 
+            thefts and burglaries, as well as victims of violent 
+            crimes such as assault and rape. The NCVS includes 
+            crimes not reported to the police, allowing for a more 
+            thorough representation of crime victimization than other 
+            crime surveys. 
+        </p>
+        <p>
+            The NCVS does not include murder, nonnegligent manslaughter, 
+            commercial crimes, or victims of crimes under 12 years old.
+            For these crimes, refer to surveys conducted by the Uniform 
+            Crime Reporting program (UCR).
+        </p>
+        <h1> Our goals </h1>
+        <p>
+            Our aim is to identify broad and specific crime trends in the
+            United States using a variety of machine learning and data mining
+            techniques. We seek to understand:
+        </p>
+        <p>
+            1) which groups of people are most likely to be the victims of crimes,
+        </p>
+        <p>
+            2) what profiles can we establish about the perpetrators of crime,
+        </p>
+        <p>
+            3) how the prevalence of different types of crime has changed in the last
+            few decades, and
+        </p>
+        <p>
+            4) which crimes are less likely to be reported to the police and what 
+            can be said about why.
+        </p>
+        <h1> Our team </h1>
+        <div class="headshots-container">
+            <figure>
+                <img src="{% static 'peter1.png' %}" alt="Peter" class="headshots">
+                <figcaption>Peter McFarlane</figcaption>
+            </figure>
+            <figure>
+                <img src="{% static 'dev.png' %}" alt="Dev" class="headshots">
+                <figcaption>Dev Malani</figcaption>
+            </figure>
+            <figure>
+                <img src="{% static 'manav.png' %}" alt="Manav" class="headshots">
+                <figcaption>Manav Desai</figcaption>
+            </figure>
+            <figure>
+                <img src="{% static 'duc.png' %}" alt="Duc" class="headshots">
+                <figcaption>Duc Ho</figcaption>
+            </figure>
+        </div>
+    </div>
+  {% endblock %}
+</body>
+</html>

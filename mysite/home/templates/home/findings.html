@@ -1,0 +1,83 @@
+{% extends 'home/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <title>Document</title>
+</head>
+<body>
+    {% block body %}
+    <header>
+        SP-2-DATAMINING-AI
+        <div class="nav">
+            <a class="btn nav-link" href="{% url 'home:base' %}">About</a>
+            <a class="btn nav-link" href="{% url 'home:docs' %}">Documents</a>
+            <a class="btn nav-link" href="{% url 'home:data' %}">Data</a>
+            <a class="btn btn-current nav-link">Findings</a>
+        </div>
+    </header>
+    <div class="bodytext">
+        <h1> General takeaways from the data </h1>
+        <p></p>
+        <h2> Crime has generally been going down since the 1990s </h2>
+        <p> 
+            By using polynomial linear regression, we can establish a line of
+            best fit for the rate of total violent and property victimizations.
+        </p>
+        <figure>
+            <img src="{% static 'lr1.png' %}" alt="LR1" class="lr">
+            <figcaption>Linear regression line for all crime types</figcaption>
+        </figure>
+        <p></p>
+        <p>
+            By changing the degree of the polynomial from 1 to 2, we can see a 
+            curved line that better fits the data. This shows that the overall crime
+            rate dropped more precipitously in the 1990s than it has in the 21st century.
+        </p>
+        <figure>
+            <img src="{% static 'lr2.png' %}" alt="LR2" class="lr">
+            <figcaption>Polynomial regression line with degree of 2 for all crime types</figcaption>
+        </figure>
+        <p></p> 
+        <p>
+            Increasing the polynomial degree also allows us to detect outliers in the data.
+            As illustrated, 2006 and 2012 are both outlier years.
+        </p>
+        <p></p>
+
+        <h2> Children are often the primary victims of violent crimes </h2>
+        <p>
+            Children under the age of 18 have a higher rate of violent victimizations
+            than of any other age cohort. 
+        </p>
+        <p></p>
+        <h2> Poor people are more heavily victimized by both violent and property crime </h2>
+        <p>
+            Those with an household income of under $10,000 are more likely than any other
+            income bracket to suffer from crime across all categories.
+        </p>
+        <h1> Next steps </h1>
+        <p>
+            To build on our application, we will employ additional data mining
+            techniques to gain a more thorough understanding of the data. We will 
+            use association rule mining to establish relationships between crimes 
+            (ex: does being the victim of one type of crime increase the likelihood of 
+            being the victim of a different crime?).
+        </p>
+        <p>
+            The survey contains various information about the relationships between 
+            victims and offenders. We want to expand our tool to incorporate that information.
+        </p>
+        <p>
+            We will also seek to examine more thoroughly which crimes in particular 
+            are most underreported to the police.
+        </p>
+
+    </div>
+    {% endblock %}
+</body>
+</html>

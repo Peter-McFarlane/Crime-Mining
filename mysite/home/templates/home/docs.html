@@ -1,0 +1,62 @@
+{% extends 'home/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <title>Document</title>
+</head>
+<body>
+    {% block body %}
+    <header>
+        SP-2-DATAMINING-AI
+        <div class="nav">
+            <a class="btn nav-link" href="{% url 'home:base' %}">About</a>
+            <a class="btn btn-current nav-link">Documents</a>
+            <a class="btn nav-link" href="{% url 'home:data' %}">Data</a>
+            <a class="btn nav-link" href="{% url 'home:findings' %}">Findings</a>
+        </div>
+    </header>
+    <div class="bodytext">
+        <h1> Documentation </h1>
+        <p> See our <a href="{% url 'home:view_pp' %}">Project Plan</a> </p>
+        <p> See our <a href="{% url 'home:view_srs' %}">Requirements Specifications</a> </p>
+        <p> Download <a href="https://www.icpsr.umich.edu/web/ICPSR/studies/38430/datadocumentation#">the dataset</a> </p>
+
+        <h1> Statistical notes </h1>
+        <p>
+            The NCVS acquires its data by asking participants a series of survey questions.
+            Crimes are ranked according to severity, with the most severe crimes,
+            such as assault, asked first. Some incidents can be classified as multiple
+            crimes, in which case the survey classifies it as the more severe crime.
+        </p>
+        <p>
+            This data tracks the number of individuals who report victimizations, rather
+            than the total number of victimizations.
+        </p>
+        <p>
+            For these reasons, the figures for some crimes are undercounted.
+        </p>
+        <p>
+            In 2006, the NCVS changed its methodology and then changed it back in 2007. 
+            Thus, estimates from 2006 should not be compared to other years.
+        </p>
+
+        <h1> Technologies </h1>
+        <p>
+            Data mining and calculations are performed with Python in 
+            conjunction with the Pandas, NumPy, and MatplotLib libraries.
+            This site uses the Django web framework with HTML and CSS.
+            Charts for the data visualization tool are rendered with Chart.js.
+
+        </p>
+
+
+        
+
+    </div>
+    {% endblock %}
+</body>
+</html>
