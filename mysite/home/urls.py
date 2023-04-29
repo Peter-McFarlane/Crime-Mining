@@ -9,6 +9,5 @@ urlpatterns = [
     path("data/", views.data, name = "data"),
     path("findings/", views.findings, name = "findings"),
     path("docs/", views.docs, name = "docs"),
-    path("view_pp", views.view_pp, name = "view_pp"),
-    path("view_srs", views.view_srs, name = "view_srs"),
+    path("view_final_report", views.view_final_report, name = "view_final_report"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

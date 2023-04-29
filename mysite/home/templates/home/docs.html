@@ -11,7 +11,7 @@
 <body>
     {% block body %}
     <header>
-        SP-2-DATAMINING-AI
+        CRIME MINING
         <div class="nav">
             <a class="btn nav-link" href="{% url 'home:base' %}">About</a>
             <a class="btn btn-current nav-link">Documents</a>
@@ -21,8 +21,7 @@
     </header>
     <div class="bodytext">
         <h1> Documentation </h1>
-        <p> See our <a href="{% url 'home:view_pp' %}">Project Plan</a> </p>
-        <p> See our <a href="{% url 'home:view_srs' %}">Requirements Specifications</a> </p>
+        <p> See our <a href="{% url 'home:view_final_report' %}">Final Report</a> </p>
         <p> Download <a href="https://www.icpsr.umich.edu/web/ICPSR/studies/38430/datadocumentation#">the dataset</a> </p>
 
         <h1> Statistical notes </h1>
@@ -50,12 +49,7 @@
             conjunction with the Pandas, NumPy, and MatplotLib libraries.
             This site uses the Django web framework with HTML and CSS.
             Charts for the data visualization tool are rendered with Chart.js.
-
         </p>
-
-
-        
-
     </div>
     {% endblock %}
 </body>

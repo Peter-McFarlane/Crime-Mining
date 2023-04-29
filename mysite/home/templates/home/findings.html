@@ -12,7 +12,7 @@
 <body>
     {% block body %}
     <header>
-        SP-2-DATAMINING-AI
+        CRIME MINING
         <div class="nav">
             <a class="btn nav-link" href="{% url 'home:base' %}">About</a>
             <a class="btn nav-link" href="{% url 'home:docs' %}">Documents</a>
@@ -21,11 +21,11 @@
         </div>
     </header>
     <div class="bodytext">
-        <h1> General takeaways from the data </h1>
+        <h1> Additional findings using machine learning </h1>
         <p></p>
         <h2> Crime has generally been going down since the 1990s </h2>
         <p> 
-            By using polynomial linear regression, we can establish a line of
+            By using linear and polynomial regression, we can establish a line of
             best fit for the rate of total violent and property victimizations.
         </p>
         <figure>
@@ -49,32 +49,68 @@
         </p>
         <p></p>
 
-        <h2> Children are often the primary victims of violent crimes </h2>
+        <h2> Being the victim of one crime is a strong predictor of being the
+             victim of another crime </h2>
         <p>
-            Children under the age of 18 have a higher rate of violent victimizations
-            than of any other age cohort. 
+            By using association rule mining, we can establish the likelihood that,
+            given an individual is the victim of one crime, they will be the victim
+            of a different crime.
         </p>
         <p></p>
-        <h2> Poor people are more heavily victimized by both violent and property crime </h2>
         <p>
-            Those with an household income of under $10,000 are more likely than any other
-            income bracket to suffer from crime across all categories.
+            To do this, we calculated the support (the frequency with which a crime 
+            or characteristic appears in the dataset), the confidence (the strength 
+            of association between the X and Y variables), and the lift (the strength 
+            of association between X and Y, taking into account their relative frequency 
+            of occurrence). A lift value greater than 1 indicates a strong association, 
+            meaning that if an individual is the victim of X, they are more likely to be 
+            a victim of Y. 
         </p>
-        <h1> Next steps </h1>
+        <figure>
+            <img src="{% static 'theft_violent_attack.png' %}" alt="AM1" class="am">
+            <figcaption class="findings-caption">An individual is much more likely to be the victim of an attack 
+                given they are a victim of theft</figcaption>
+        </figure>
+        <p></p>
+        <figure>
+            <img src="{% static 'unwanted_sex_violent_attack.png' %}" alt="AM2" class="am">
+            <figcaption class="findings-caption">Individuals who report being forced or coerced into sex are over
+                16 times as likely to also report being the victim of a violent attack</figcaption>
+        </figure>
+        <p></p>
         <p>
-            To build on our application, we will employ additional data mining
-            techniques to gain a more thorough understanding of the data. We will 
-            use association rule mining to establish relationships between crimes 
-            (ex: does being the victim of one type of crime increase the likelihood of 
-            being the victim of a different crime?).
+            When selecting for personal characteristics rather than crimes, 
+            the lift values get lower. 
         </p>
+        <p></p>
+        <figure>
+            <img src="{% static 'male_violent_victimization.png' %}" alt="AM3" class="am">
+            <figcaption class="findings-caption">An individual is slightly more likely to be the victim of 
+                an attack if they are male...</figcaption>
+        </figure>
+        <p></p>
+        <figure>
+            <img src="{% static 'female_violent_victimization.png' %}" alt="AM4" class="am">
+            <figcaption class="findings-caption">...and slightly less likely to be the victim of 
+                an attack if they are female</figcaption>
+        </figure>
+        <p></p>
+        <figure>
+            <img src="{% static 'urban_property_crime.png' %}" alt="AM5" class="am">
+            <figcaption class="findings-caption">Individuals living in urban areas are slightly more likely
+                to be victims of a property crime...</figcaption>
+        </figure>
+        <p></p>
+        <figure>
+            <img src="{% static 'rural_property_crime.png' %}" alt="AM6" class="am">
+            <figcaption class="findings-caption">...whereas rural Americans are significantly less likely to
+                be victimized by property crime </figcaption>
+        </figure>
+        <p></p>
         <p>
-            The survey contains various information about the relationships between 
-            victims and offenders. We want to expand our tool to incorporate that information.
-        </p>
-        <p>
-            We will also seek to examine more thoroughly which crimes in particular 
-            are most underreported to the police.
+            As shown in these results, being the victim of one crime is a better predictor 
+            of whether an individual will be the victim of another crime more than any 
+            given personal characteristic.
         </p>
 
     </div>

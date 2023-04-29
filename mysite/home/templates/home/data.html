@@ -11,7 +11,7 @@
 <body>
     {% block body %}
     <header>
-        SP-2-DATAMINING-AI
+        CRIME MINING
         <div class="nav">
             <a class="btn nav-link" href="{% url 'home:base' %}">About</a>
             <a class="btn nav-link" href="{% url 'home:docs' %}">Documents</a>
@@ -32,10 +32,21 @@
         </p>
         <h2> {{graphtitle}} </h2>
 
+        {% if crime == "unwanted sexual activity" %}
+            <p> 
+                Note: does not include all rape or sexual assault (these are classified 
+                under 'attacks'). Rather, these are individuals who report being coerced 
+                into unwanted sex, other than in incidents already accounted for in the survey.
+            </p>
+        {% endif %}
+
         {% if characteristic == "all" %}
             <div> <canvas id="chart"></canvas> </div>
         {% elif characteristic == "age" %}
             <div> <canvas id="ageChart"></canvas> </div>
+        {% elif characteristic == "race" %}
+            <p> Note: any nonzero values for Mixed Race before 2003 should be ignored. </p>
+            <div> <canvas id="raceChart"></canvas> </div>
         {% elif characteristic == "sex" %}
             <div> <canvas id="sexChart"></canvas> </div>
         {% elif characteristic == "sexual orientation" %}
@@ -124,6 +135,52 @@
                     {
                         label: '65 or older',
                         data: yvals[5],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // RACE
+        $(document).ready(function(){
+                const ctx = document.getElementById('raceChart');
+                let xvals = JSON.parse("{{xvals}}")
+                let yvals = JSON.parse("{{yvals}}")
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xvals,
+                    datasets: [{
+                        label: 'White',
+                        data: yvals[0],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Black',
+                        data: yvals[1],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Native American',
+                        data: yvals[2],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Asian or Pacific Islander',
+                        data: yvals[3],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Mixed Race',
+                        data: yvals[4],
                         borderWidth: 1
                     }]
                 },

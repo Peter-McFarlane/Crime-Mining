@@ -119,6 +119,18 @@ a:hover {
     max-height: 100%;
 }
 
+.am {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.findings-caption {
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
 img {
     object-fit: cover;
 }

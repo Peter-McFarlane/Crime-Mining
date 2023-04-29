@@ -26,7 +26,7 @@ CRIMES = (
     ('4', 'breakins and attempted breakins'), 
     ('5', 'motor vehicle thefts'),
     ('6', 'attacks and threats'), 
-    ('7', 'unwanted sex'),
+    ('7', 'unwanted sexual activity'),
 )
 
 RATE_OR_NUMBER = (

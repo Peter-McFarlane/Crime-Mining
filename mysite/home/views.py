@@ -4,7 +4,6 @@ from .forms import SelectionForm
 import datafunctions
 import json
 
-
 # Create your views here.
 
 def base(request):
@@ -13,12 +12,8 @@ def base(request):
 def docs(request):
     return render(request, 'home/docs.html')
 
-def view_pp(request):
-    filename = 'SP-2-DataMining-AI-ProjectPlan.pdf'
-    return FileResponse(open(filename, 'rb'), content_type='application/pdf')
-
-def view_srs(request):
-    filename = 'SP-2-DataMiningAI-SRS.pdf'
+def view_final_report(request):
+    filename = 'SP-2-Red-DataMiningAI-FinalReport.pdf'
     return FileResponse(open(filename, 'rb'), content_type='application/pdf')
 
 def data(request):
@@ -44,7 +39,7 @@ def data(request):
         # get crime (string)
         crimetuple = request.POST.get('crime_type')
         crimevalue = int(crimetuple) - 1
-        crimes = ["all violent victimizations", "all property victimizations", "thefts and attempted thefts", "breakins and attempted breakins", "motor vehicle thefts", "attacks and threats", "unwanted sex"]
+        crimes = ["all violent victimizations", "all property victimizations", "thefts and attempted thefts", "breakins and attempted breakins", "motor vehicle thefts", "attacks and threats", "unwanted sexual activity"]
         crime = crimes[crimevalue]
 
         # get rate or number (string)
@@ -53,7 +48,7 @@ def data(request):
         rnlist = ["rate", "number"]
         rate_or_number = rnlist[rnvalue]
 
-        # generate graph title (string)
+        # generate graph title on the page
         graphtitle = "Viewing {} of {} by {}:".format(rate_or_number, crime, characteristic)
 
         # generate x and y values of the graph (lists)

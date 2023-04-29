@@ -2,9 +2,8 @@ import numpy as np
 import pandas as pd
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 
-# creates dataframe from textfile
+# creates dataframe from textfile and saves it to a parquet
 # ! this should only need to be called once !
-"""
 def create_dataframe():
     print("generating dataframe...")
 
@@ -86,11 +85,10 @@ def create_dataframe():
                                          'reported to police', 'did not report to police', 
                                          'all violent victimizations', 'all property victimizations',
                                          'thefts and attempted thefts','breakins and attempted breakins', 
-                                         'motor vehicle thefts', 'attacks and threats', 'unwanted sex'])
+                                         'motor vehicle thefts', 'attacks and threats', 'unwanted sexual activity'])
     df.info()
     df.to_parquet('data.parquet', index=False)
     print("generated :)")
-"""
 
 def create_graph(characteristic, crime, rate_or_number):
 
@@ -135,14 +133,6 @@ def create_graph(characteristic, crime, rate_or_number):
 
                 for item in grouped.items():
                     available_years.append(item[0][0])
-
-                """
-                if (crime == "all property victimizations") or (crime == "all violent victimizations"):
-                    remove_doubles = []
-                    for year in range(0,available_years[i],2):
-                        remove_doubles.append(year)
-                    available_years = remove_doubles
-                """
 
                 i = 0
                 for year in range(1992,2022):
@@ -190,7 +180,7 @@ def create_graph(characteristic, crime, rate_or_number):
             valstable.append(vals)
 
     # generates y values for each characteristic
-    
+
     # filters by all characteristics
     if (characteristic == "all"):
             df1 = df
@@ -198,7 +188,6 @@ def create_graph(characteristic, crime, rate_or_number):
 
     # filters by age bracket
     elif (characteristic == "age"):
-        df.head(10)
         for bracket in range(1,7):
             if (bracket == 1):
                 df1 = df[df['age'] < 18]
@@ -212,6 +201,21 @@ def create_graph(characteristic, crime, rate_or_number):
                 df1 = df[(df['age'] >= 50) & (df['age'] < 65)]
             elif (bracket == 6):
                 df1 = df[df['age'] >= 65]
+            generate_values()
+
+    # filters by race
+    elif (characteristic == "race"):
+        for race in range(1,6):
+            if (race == 1):
+                df1 = df[df['race'] == 1]
+            elif (race == 2):
+                df1 = df[df['race'] == 2]
+            elif (race == 3):
+                df1 = df[df['race'] == 3]
+            elif (race == 4):
+                df1 = df[(df['race'] == 4) | (df['race'] == 5)]
+            elif (race == 5):
+                df1 = df[(df['race'] >= 6) & (df['race'] < 21)]
             generate_values()
 
     # filters by sex
